@@ -43,6 +43,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.status-item > * {
+  display: inline;
+}
+
 .question-box {
   background-color: #fcd72c;
   padding: 1rem;

@@ -14,8 +14,15 @@
     </header>
 
     <div class="status-bar">
-      <div class="status-item">Guesses: 1/3</div>
-      <div class="status-item">Score: 60</div>
+      <div class="status-item">
+        <p>Guesses: </p>
+        <p id="guesses">0</p>
+        <p>/3</p>
+      </div>
+      <div class="status-item">
+        <p>Score: </p>
+        <p id="score">0</p>
+      </div>
     </div>
 
     <div class="question-box">
@@ -38,12 +45,13 @@
     </div>
 
     <div class="country-select">
-      <select>
+      <select id="country-guess">
         <option selected disabled>Select or enter country</option>
         <option>Mali</option>
         <option>Niger</option>
         <option>Senegal</option>
-        <!-- Add more countries as needed -->
       </select>
     </div>
   </div>
+  <script src="script.js"></script>
+</body>
