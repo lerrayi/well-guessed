@@ -64,12 +64,16 @@ body {
   opacity: 0.6;
 }
 
-.country-select select {
+#country-select select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #aaa;
   border-radius: 6px;
   font-size: 1rem;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 768px) {

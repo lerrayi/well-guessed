@@ -20,8 +20,8 @@
         <div class="status-bar col-12">
           <div class="status-item">
             <p>Guesses: </p>
-            <p id="guesses">0</p>
-            <p>/3</p>
+            <p id="guesses">4</p>
+            <p>/4</p>
           </div>
           <div class="status-item">
             <p>Score: </p>
@@ -41,7 +41,7 @@
         <div class="row">
           <div class="clue col-12 mb-2">
             <div class="clue-header">⭐ Clue 1</div>
-            <div class="clue-text">The famous leader Mansa Musa once ruled here.</div>
+            <div id="clue1" class="clue-text hidden">The famous leader Mansa Musa once ruled here.</div>
           </div>
         </div>
 
@@ -62,7 +62,7 @@
 
       <!-- Responsive column for submit button and locked article -->
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="country-select">
+        <form id="country-select">
           <select id="country-guess">
             <option selected disabled>Select or enter country</option>
             <option>Mali</option>
@@ -70,7 +70,7 @@
             <option>Senegal</option>
           </select>
           <button type="submit" id="submit-guess">Submit</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -79,5 +79,6 @@
   <script src="script.js"></script>
   <!-- Bootstrap JS Bundle -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
