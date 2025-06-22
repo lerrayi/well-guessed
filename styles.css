@@ -88,11 +88,6 @@ p, select {
   border: 1px solid #aaa;
   border-radius: 6px;
   font-size: 1rem;
-  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Open Sans", Arial, sans-serif !important;
-}
-
-option {
-  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Open Sans", Arial, sans-serif !important;
 }
 
 .hidden {
