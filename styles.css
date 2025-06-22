@@ -1,7 +1,15 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #fdf9f3;
+  background-color: #FDF9EF !important;
+  font-family: "Open Sans", Arial, sans-serif;
   color: #333;
+}
+
+h1, h2 {
+  font-family: "Proxima Nova", sans-serif;
+}
+
+p, select {
+  font-size: 1.2em;
 }
 
 .header {
@@ -17,7 +25,6 @@ body {
 }
 
 .title {
-  font-size: 1.5rem;
   font-weight: bold;
   color: #222;
 }
@@ -25,7 +32,7 @@ body {
 .status-bar {
   display: flex;
   justify-content: space-between;
-  background-color: #fcd72c;
+  background-color: #FFE583;
   padding: 0.5rem 1rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -36,19 +43,25 @@ body {
 }
 
 .question-box {
-  background-color: #fcd72c;
+  background-color: #FECA0B;
   padding: 1rem;
   border-radius: 8px;
-  font-weight: bold;
   text-align: center;
   margin-bottom: 1rem;
+  align-items: center;
+  min-height: 200px;
+}
+
+.question-box > * {
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .clue {
-  background: #f7f7f7;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 0.5rem 1rem;
+  padding: 5px;
 }
 
 .clue-header {
@@ -62,6 +75,7 @@ body {
 
 .clue-text {
   color: #444;
+  margin-bottom: 0;
 }
 
 .disabled {
@@ -74,6 +88,11 @@ body {
   border: 1px solid #aaa;
   border-radius: 6px;
   font-size: 1rem;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Open Sans", Arial, sans-serif !important;
+}
+
+option {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", "Open Sans", Arial, sans-serif !important;
 }
 
 .hidden {
@@ -81,7 +100,20 @@ body {
 }
 
 @media (max-width: 768px) {
+  .question-box {
+    min-height: 200px;
+  }
+
+  .question-box > * {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+
   .header {
     justify-content: center;
+  }
+
+  h2 {
+    font-size: 1.3em;
   }
 }

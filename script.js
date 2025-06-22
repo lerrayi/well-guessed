@@ -1,15 +1,20 @@
-const score = document.getElementById('score');
 const guesses = document.getElementById('guesses');
 const countryGuess = document.getElementById('country-guess');
 let guessCount = 4;
+let score = 0;
 
-function gameRestart() {
+function gameRestart(win) {
     guessCount = 4;
     guesses.textContent = guessCount;
 
     for (let i = 1; i < 4; i++) {
         addHidden('clue' + i + '-text');
         document.getElementById('clue' + i + '-icon').textContent = '🔒';
+    }
+
+    if (win == true) {
+        score += 500;
+        document.getElementById('score').textContent = score;
     }
 }
 
@@ -32,12 +37,14 @@ function unlockClue(guessCount) {
 document.getElementById('country-select').addEventListener('submit', function(event) {
     event.preventDefault();
     const country = document.getElementById('country-guess').value;
-    const correctCountry = 'Mali';
+    const correctCountry = '🇲🇱 Mali';
+    let win = false;
 
     if (country == correctCountry) {
         confetti();
-        alert('Correct!');
-        gameRestart();
+        alert('Correct! Game restarting...');
+        win = true;
+        gameRestart(win);
     } else if (guessCount > 0) {
         guessCount--;
         guesses.textContent = guessCount;
@@ -46,6 +53,6 @@ document.getElementById('country-select').addEventListener('submit', function(ev
     }
     else {
         alert('Game Over! The correct answer was ' + correctCountry);
-        gameRestart();
+        gameRestart(win);
     }
 });
