@@ -8,7 +8,8 @@ function gameRestart() {
     guesses.textContent = guessCount;
 
     for (let i = 1; i < 4; i++) {
-        addHidden('clue' + i);
+        addHidden('clue' + i + '-text');
+        document.getElementById('clue' + i + '-icon').textContent = '🔒';
     }
 }
 
@@ -24,7 +25,8 @@ function unlockClue(guessCount) {
     let maxGuesses = 4;
     let clueNumber = maxGuesses - guessCount;
 
-    removeHidden('clue' + clueNumber);
+    removeHidden('clue' + clueNumber + '-text');
+    document.getElementById('clue' + clueNumber + '-icon').textContent = '⭐';
 }
 
 document.getElementById('country-select').addEventListener('submit', function(event) {

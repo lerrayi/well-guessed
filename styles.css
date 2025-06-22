@@ -56,6 +56,10 @@ body {
   margin-bottom: 0.25rem;
 }
 
+.clue-header > * {
+  display: inline;
+}
+
 .clue-text {
   color: #444;
 }
