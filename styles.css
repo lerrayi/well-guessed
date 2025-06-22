@@ -12,6 +12,12 @@ p, select {
   font-size: 1.2em;
 }
 
+.locked-article img {
+  width: 100%; 
+  height: auto;
+  border-radius: 8px;
+}
+
 .header {
   display: flex;
   align-items: center;
