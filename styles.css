@@ -1,7 +1,6 @@
 body {
   background-color: #FDF9EF !important;
   font-family: "Open Sans", Arial, sans-serif;
-  color: #333;
 }
 
 h1, h2 {
@@ -59,7 +58,6 @@ p, select {
 
 .title {
   font-weight: bold;
-  color: #222;
 }
 
 .status-bar {
@@ -107,7 +105,6 @@ p, select {
 }
 
 .clue-text {
-  color: #444;
   margin-bottom: 0;
 }
 

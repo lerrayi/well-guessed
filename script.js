@@ -12,6 +12,9 @@ function gameRestart(win) {
         document.getElementById('clue' + i + '-icon').textContent = '🔒';
     }
 
+    document.getElementsByClassName('overlay')[0].classList.add('hidden');
+    document.getElementsByClassName('disabled-link')[0].classList.remove('disabled-link');
+
     if (win == true) {
         score += 500;
         document.getElementById('score').textContent = score;
