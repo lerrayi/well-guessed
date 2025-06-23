@@ -2,8 +2,9 @@ const guesses = document.getElementById('guesses');
 const countryGuess = document.getElementById('country-guess');
 let guessCount = 4;
 let score = 0;
+let win = false;
 
-function gameRestart(win) {
+function gameRestart(winBoolean) {
     guessCount = 4;
     guesses.textContent = guessCount;
 
@@ -15,10 +16,12 @@ function gameRestart(win) {
     document.getElementsByClassName('overlay')[0].classList.add('hidden');
     document.getElementsByClassName('disabled-link')[0].classList.remove('disabled-link');
 
-    if (win == true) {
+    if (winBoolean == true) {
         score += 500;
         document.getElementById('score').textContent = score;
     }
+
+    win = false;
 }
 
 function addHidden(elementId) {
@@ -41,7 +44,8 @@ document.getElementById('country-select').addEventListener('submit', function(ev
     event.preventDefault();
     const country = document.getElementById('country-guess').value;
     const correctCountry = '🇲🇱 Mali';
-    let win = false;
+
+    guessCount--;
 
     if (country == correctCountry) {
         confetti();
@@ -49,7 +53,6 @@ document.getElementById('country-select').addEventListener('submit', function(ev
         win = true;
         gameRestart(win);
     } else if (guessCount > 0) {
-        guessCount--;
         guesses.textContent = guessCount;
         unlockClue(guessCount);
         alert('Incorrect! Try again.');
