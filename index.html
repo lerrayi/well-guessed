@@ -76,11 +76,16 @@
 
       <!-- Responsive column for submit button and locked article -->
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <a href="https://www.charitywater.org/stories/waiting-for-clean-water" target="_blank" class="locked-article col-12">
+        <a href="https://www.charitywater.org/stories/waiting-for-clean-water" target="_blank" class="locked-article disabled-link col-12">
           <img src="img/mali.webp" alt="Mali" />
+          <div class="overlay">
+            <p class="enabled text-white text-center" onclick="event.stopPropagation(); event.preventDefault();">🔒 Answer today's question to unlock this article!</p>
+          </div>
         </a>
-        <form class="col-12" id="country-select">
-          <select id="country-guess">
+      </div>
+      <form class="col-12" id="country-select">
+        <div class="row">
+          <select class="col-11" id="country-guess">
             <option selected disabled>Select or enter country</option>
             <option>🇰🇭 Cambodia</option>
             <option>🇲🇱 Mali</option>
@@ -89,9 +94,9 @@
             <option>🇸🇱 Sierra Leone</option>
             <option>🇹🇿 Tanzania</option>
           </select>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+          <button class="col-1 rounded" type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 
