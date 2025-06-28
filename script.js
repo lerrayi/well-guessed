@@ -3,6 +3,42 @@ const countryGuess = document.getElementById('country-guess');
 let guessCount = 4;
 let score = 0;
 let win = false;
+let question = {};
+let correctCountry = '';
+
+// Import questions data
+let questions = [];
+
+// Fetch and load questions from JSON file
+fetch('./questions.json')
+    .then(response => response.json())
+    .then(data => {
+        questions = data.map(item => ({
+            question: item.question,
+            answer: item.answer,
+            clue1: item.clue1,
+            clue2: item.clue2,
+            clue3: item.clue3,
+            article: item.article,
+            img: item.img
+        }));
+
+        gameRestart(win);
+    })
+    .catch(error => {
+        console.error('Error loading questions:', error);
+    });
+
+function chooseQuestion(questions) {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    question = questions[randomIndex];
+    document.getElementById('question-text').textContent = question.question;
+    document.getElementById('clue1-text').textContent = question.clue1;
+    document.getElementById('clue2-text').textContent = question.clue2;
+    document.getElementById('clue3-text').textContent = question.clue3;
+    document.getElementById('img-link').src = question.img;
+    correctCountry = question.answer;
+}
 
 function gameRestart(winBoolean) {
     guessCount = 4;
@@ -20,6 +56,8 @@ function gameRestart(winBoolean) {
         score += 500;
         document.getElementById('score').textContent = score;
     }
+
+    chooseQuestion(questions);
 
     win = false;
 }
@@ -43,7 +81,6 @@ function unlockClue(guessCount) {
 document.getElementById('country-select').addEventListener('submit', function(event) {
     event.preventDefault();
     const country = document.getElementById('country-guess').value;
-    const correctCountry = '🇲🇱 Mali';
 
     guessCount--;
 
