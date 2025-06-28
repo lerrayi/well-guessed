@@ -20,7 +20,9 @@ fetch('./questions.json')
             clue2: item.clue2,
             clue3: item.clue3,
             article: item.article,
-            img: item.img
+            articleLink: item.articleLink,
+            img: item.img,
+            alt: item.alt
         }));
 
         gameRestart(win);
@@ -36,8 +38,11 @@ function chooseQuestion(questions) {
     document.getElementById('clue1-text').textContent = question.clue1;
     document.getElementById('clue2-text').textContent = question.clue2;
     document.getElementById('clue3-text').textContent = question.clue3;
+    document.getElementById('article-link').href = question.articleLink;
     document.getElementById('img-link').src = question.img;
+    document.getElementById('img-link').alt = question.alt;
     correctCountry = question.answer;
+    console.log('Index chosen:', randomIndex);
 }
 
 function gameRestart(winBoolean) {
@@ -49,7 +54,6 @@ function gameRestart(winBoolean) {
         document.getElementById('clue' + i + '-icon').textContent = '🔒';
     }
 
-    document.getElementsByClassName('overlay')[0].classList.add('hidden');
     document.getElementsByClassName('disabled-link')[0].classList.remove('disabled-link');
 
     if (winBoolean == true) {

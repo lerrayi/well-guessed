@@ -5,7 +5,20 @@
         "clue1":"This country has a very famous mosque.",
         "clue2":"The famous leader Mansa Musa once ruled here.",
         "clue3":"This country's capital is Timbuktu.",
-        "article":"Waiting for clean water in one of the harshest places on Earth | Tyler Riewer",
-        "img":"img/mali.webp"
+        "article":"Waiting for clean water in one of the harshest places on Earth | Bintou's Story",
+        "articleLink": "https://www.charitywater.org/stories/waiting-for-clean-water",
+        "img":"img/mali.webp",
+        "alt":"A darkskinned woman smiles away from the camera, the sun lighting up her face. She is wearing a green headscarf and a matching patterned dress, her neck lined with colorful beads."
+    },
+    {
+        "question":"In this landlocked country in East Africa, 38 million people lack access to safe water.",
+        "answer":"Uganda",
+        "clue1":"This country's currency is known as UGX.",
+        "clue2":"This is one of the countries containing the White Nile.",
+        "clue3":"This country is nicknamed the 'Pearl of Africa'.",
+        "article":"I Feel Beautiful for the First Time | Helen's Story",
+        "articleLink": "https://medium.com/charity-water/i-feel-beautiful-for-the-first-time-4b66fe80a1d9",
+        "img":"img/uganda.webp",
+        "alt":"An older woman with a black mesh headscarf and a green blouse smiles towards the sun. Her headscarf is adorned with pink flowers. She is standing in a field of crops."
     }
 ]

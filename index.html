@@ -37,7 +37,7 @@
       <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="row">
           <div class="col-12 question-box d-flex flex-column justify-content-center">
-            <h2 id="question-text">Gayy</h2>
+            <h2 id="question-text"></h2>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
               <p id="clue1-icon">🔒</p>
               <p>Clue 1</p>
             </div>
-            <p id="clue1-text" class="clue-text hidden">This country has a very famous mosque.</p>
+            <p id="clue1-text" class="clue-text hidden"></p>
           </div>
         </div>
 
@@ -59,7 +59,7 @@
               <p id="clue2-icon">🔒</p>
               <p>Clue 2</p>
             </div>
-            <p id="clue2-text" class="clue-text hidden">The famous leader Mansa Musa once ruled here.</p>
+            <p id="clue2-text" class="clue-text hidden"></p>
           </div>
         </div>
 
@@ -70,18 +70,15 @@
               <p id="clue3-icon">🔒</p>
               <p>Clue 3</p>
             </div>
-            <p id="clue3-text" class="clue-text hidden">This country's capital is Timbuktu.</p>
+            <p id="clue3-text" class="clue-text hidden"></p>
           </div>
         </div>
       </div>
 
       <!-- Responsive column for submit button and locked article -->
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <a href="https://www.charitywater.org/stories/waiting-for-clean-water" target="_blank" class="locked-article disabled-link col-12">
-          <img id="img-link" src="" alt="Mali" />
-          <div class="overlay">
-            <p class="enabled text-white text-center" onclick="event.stopPropagation(); event.preventDefault();">🔒 Answer today's question to unlock this article!</p>
-          </div>
+        <a id="article-link" href="/" target="_blank" class="locked-article disabled-link col-12">
+          <img id="img-link" src=""/>
         </a>
       </div>
       <form class="col-12" id="country-select">
@@ -94,6 +91,7 @@
             <option>Senegal</option>
             <option>Sierra Leone</option>
             <option>Tanzania</option>
+            <option>Uganda</option>
           </select>
           <button class="col-lg-1 col-md-12 col-sm-12 rounded" type="submit">Submit</button>
         </div>
