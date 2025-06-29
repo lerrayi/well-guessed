@@ -36,10 +36,6 @@ p, select {
   border-radius: 8px;
 }
 
-.disabled-link {
-  pointer-events: none;
-}
-
 .enabled {
   pointer-events: auto;
 }
