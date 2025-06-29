@@ -15,7 +15,32 @@
 
 </head>
 <body>
-  <div class="container game">
+  <div id="main-menu" class="container">
+    <div class="row justify-content-center">
+      <header class="header">
+        <img src="img/well-guessed-logo.webp" alt="Well icon" class="icon rounded" />
+        <h1 class="title">well: guessed</h1>
+      </header>
+
+      <h2 class="col-12 text-center">A Geographical Trivia Game!</h2>
+
+      <div class="col-lg-6 col-md-8 col-sm-12 text-center">
+        <ul id="difficulty-selector">
+          <li class="difficulty-item my-3" data-difficulty="easy">
+            <button class="rounded p-3 col-12">Easy</button>
+          </li>
+          <li class="difficulty-item my-3" data-difficulty="medium">
+            <button class="rounded p-3 col-12">Medium</button>
+          </li>
+          <li class="difficulty-item my-3" data-difficulty="hard">
+            <button class="rounded p-3 col-12">Hard</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="game" class="container hidden">
     <div class="row">
         <header class="header">
           <img src="img/well-guessed-logo.webp" alt="Well icon" class="icon rounded" />
@@ -25,7 +50,7 @@
         <div class="status-bar col-12">
           <div class="status-item">
             <p>Guesses: </p>
-            <p id="guesses">4</p><p>/4</p>
+            <p id="guesses">4</p><p>/</p><p id="max-guesses">4</p>
           </div>
           <div class="status-item">
             <p>Score: </p>

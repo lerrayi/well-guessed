@@ -120,6 +120,39 @@ p, select {
   display: none;
 }
 
+#difficulty-selector {
+  list-style: none;
+  padding: 0;
+}
+
+[data-difficulty="easy"] button {
+  background-color: #99e8ac;
+}
+
+[data-difficulty="easy"] button:hover {
+  background-color: #7edc8f;
+}
+
+[data-difficulty="medium"] button {
+  background-color: #f0e699
+}
+
+[data-difficulty="medium"] button:hover {
+  background-color: #e4da71;
+}
+
+[data-difficulty="hard"] button {
+  background-color: #f0a699;
+}
+
+[data-difficulty="hard"] button:hover {
+  background-color: #e88e7e;
+}
+
+.difficulty-item {
+  font-size: 2em;
+}
+
 @media (max-width: 768px) {
   .question-box {
     min-height: 200px;

@@ -1,11 +1,14 @@
 const guesses = document.getElementById('guesses');
-const countryGuess = document.getElementById('country-guess');
-let guessCount = 4;
+const maxGuesses = document.getElementById('max-guesses');
+const difficultyButtons = document.querySelectorAll('.difficulty-item button');
 let score = 0;
 let win = false;
 let question = {};
 let correctCountry = '';
 let lastQuestionIndex = -1;
+let difficulty = 'easy';
+let guessCount = 4;
+let maxGuessNum = 4;
 
 // Import questions data
 let questions = [];
@@ -25,12 +28,41 @@ fetch('./questions.json')
             img: item.img,
             alt: item.alt
         }));
-
-        gameRestart(win);
     })
     .catch(error => {
         console.error('Error loading questions:', error);
     });
+
+difficultyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Get the difficulty from the parent li element
+        difficulty = this.parentElement.getAttribute('data-difficulty');
+        console.log('Selected difficulty:', difficulty);
+        
+        // Hide main menu and show game
+        document.getElementById('main-menu').classList.add('hidden');
+        document.getElementById('game').classList.remove('hidden');
+        gameRestart(win);
+    });
+});
+
+function setDifficulty(difficulty) {
+    console.log('Setting difficulty:', difficulty);
+
+    if (difficulty == 'easy') {
+        guessCount = 4;
+        maxGuessNum = 4;
+    } else if (difficulty == 'medium') {
+        guessCount = 3;
+        maxGuessNum = 3;
+    } else if (difficulty == 'hard') {
+        guessCount = 2;
+        maxGuessNum = 2;
+    }
+
+    maxGuesses.textContent = maxGuessNum;
+    guesses.textContent = guessCount;
+}
 
 function chooseQuestion(questions) {
     console.log('chooseQuestion called with questions array length:', questions.length);
@@ -67,8 +99,8 @@ function chooseQuestion(questions) {
 }
 
 function gameRestart(winBoolean) {
-    guessCount = 4;
-    guesses.textContent = guessCount;
+    console.log('gameRestart called with winBoolean:', winBoolean);
+    setDifficulty(difficulty);
 
     for (let i = 1; i < 4; i++) {
         addHidden('clue' + i + '-text');
@@ -99,8 +131,7 @@ function removeHidden(elementId) {
 }
 
 function unlockClue(guessCount) {
-    let maxGuesses = 4;
-    let clueNumber = maxGuesses - guessCount;
+    let clueNumber = maxGuessNum - guessCount;
 
     removeHidden('clue' + clueNumber + '-text');
     document.getElementById('clue' + clueNumber + '-icon').textContent = '⭐';
