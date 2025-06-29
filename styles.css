@@ -129,7 +129,8 @@ p, select {
   background-color: #99e8ac;
 }
 
-[data-difficulty="easy"] button:hover {
+[data-difficulty="easy"] button:hover
+[data-difficulty="easy"] button:focus {
   background-color: #7edc8f;
 }
 
@@ -137,7 +138,8 @@ p, select {
   background-color: #f0e699
 }
 
-[data-difficulty="medium"] button:hover {
+[data-difficulty="medium"] button:hover
+[data-difficulty="medium"] button:focus {
   background-color: #e4da71;
 }
 
@@ -145,7 +147,8 @@ p, select {
   background-color: #f0a699;
 }
 
-[data-difficulty="hard"] button:hover {
+[data-difficulty="hard"] button:hover
+[data-difficulty="hard"] button:focus {
   background-color: #e88e7e;
 }
 
