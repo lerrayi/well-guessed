@@ -153,6 +153,21 @@ p, select {
   font-size: 2em;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  width: 100%;
+  color: #fff;
+}
+
+footer > * {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
 @media (max-width: 768px) {
   .question-box {
     min-height: 200px;
@@ -169,5 +184,9 @@ p, select {
 
   h2 {
     font-size: 1.3em;
+  }
+
+  footer {
+    position: relative;
   }
 }
