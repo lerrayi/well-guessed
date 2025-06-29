@@ -5,6 +5,7 @@ let score = 0;
 let win = false;
 let question = {};
 let correctCountry = '';
+let lastQuestionIndex = -1;
 
 // Import questions data
 let questions = [];
@@ -32,7 +33,27 @@ fetch('./questions.json')
     });
 
 function chooseQuestion(questions) {
-    const randomIndex = Math.floor(Math.random() * questions.length);
+    console.log('chooseQuestion called with questions array length:', questions.length);
+    console.log('Questions array:', questions);
+    
+    if (questions.length === 0) {
+        console.error('Questions array is empty!');
+        return;
+    }
+    
+    let randomIndex;
+    
+    // If there's only one question, use it
+    if (questions.length === 1) {
+        randomIndex = 0;
+    } else {
+        // Prevent the same index from being chosen twice in a row
+        do {
+            randomIndex = Math.floor(Math.random() * questions.length);
+        } while (randomIndex === lastQuestionIndex);
+    }
+    
+    lastQuestionIndex = randomIndex;
     question = questions[randomIndex];
     document.getElementById('question-text').textContent = question.question;
     document.getElementById('clue1-text').textContent = question.clue1;
@@ -54,7 +75,10 @@ function gameRestart(winBoolean) {
         document.getElementById('clue' + i + '-icon').textContent = '🔒';
     }
 
-    document.getElementsByClassName('disabled-link')[0].classList.remove('disabled-link');
+    const disabledLink = document.getElementsByClassName('disabled-link')[0];
+    if (disabledLink) {
+        disabledLink.classList.remove('disabled-link');
+    }
 
     if (winBoolean == true) {
         score += 500;
