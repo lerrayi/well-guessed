@@ -104,13 +104,13 @@ p, select, button, #article-link {
 .basic-btn {
   background-color: #FFE583;
   border-color: #FECA0B;
-  font-weight: bold;
+  font-size: 1.7em !important;
 }
 
 .basic-btn:hover,
 .basic-btn:focus {
   background-color: #ffd748;  
-  border-color: #e7bc21;
+  border-color: #c7a31f;
 }
 
 .big-text {
@@ -128,29 +128,35 @@ p, select, button, #article-link {
 
 [data-difficulty="easy"] button {
   background-color: #99e8ac;
+  border-color: #5ccb76;
 }
 
 [data-difficulty="easy"] button:hover,
 [data-difficulty="easy"] button:focus {
   background-color: #7edc8f;
+  border-color: #37ab52;
 }
 
 [data-difficulty="medium"] button {
-  background-color: #f0e699
+  background-color: #FFE583;
+  border-color: #FECA0B;
 }
 
 [data-difficulty="medium"] button:hover,
 [data-difficulty="medium"] button:focus {
-  background-color: #e4da71;
+  background-color: #ffd748;
+  border-color: #c7a31f;
 }
 
 [data-difficulty="hard"] button {
   background-color: #f0a699;
+  border-color: #ca6a59;
 }
 
 [data-difficulty="hard"] button:hover,
 [data-difficulty="hard"] button:focus {
   background-color: #e88e7e;
+  border-color: #a65344;
 }
 
 .difficulty-item {
