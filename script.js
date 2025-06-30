@@ -1,6 +1,7 @@
 const guesses = document.getElementById('guesses');
 const maxGuesses = document.getElementById('max-guesses');
 const difficultyButtons = document.querySelectorAll('.difficulty-item button');
+const imgLinks = document.querySelectorAll('.img-link');
 
 const gameStartAudio = document.getElementById('game-start-audio');
 const gameOverAudio = document.getElementById('game-over-audio');
@@ -101,8 +102,12 @@ function chooseQuestion(questions) {
     document.getElementById('clue3-text').textContent = question.clue3;
     document.getElementById('article-link').href = question.articleLink;
     document.getElementById('article-link').textContent = question.article;
-    document.getElementById('img-link').src = question.img;
-    document.getElementById('img-link').alt = question.alt;
+
+    imgLinks.forEach(link => {
+        link.src = question.img;
+        link.alt = question.alt;
+    });
+
     correctCountry = question.answer;
     console.log('Index chosen:', randomIndex);
 }
