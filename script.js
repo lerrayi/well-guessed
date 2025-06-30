@@ -1,6 +1,12 @@
 const guesses = document.getElementById('guesses');
 const maxGuesses = document.getElementById('max-guesses');
 const difficultyButtons = document.querySelectorAll('.difficulty-item button');
+
+const gameStartAudio = document.getElementById('game-start-audio');
+const gameOverAudio = document.getElementById('game-over-audio');
+const winAudio = document.getElementById('win-audio');
+const failAudio = document.getElementById('fail-audio');
+
 let score = 0;
 let win = false;
 let question = {};
@@ -120,6 +126,8 @@ function gameRestart(winBoolean) {
     chooseQuestion(questions);
 
     win = false;
+
+    gameStartAudio.play();
 }
 
 function addHidden(elementId) {
@@ -145,16 +153,19 @@ document.getElementById('country-select').addEventListener('submit', function(ev
 
     if (country == correctCountry) {
         confetti();
+        winAudio.play();
         alert('Correct! Game restarting...');
         win = true;
         gameRestart(win);
     } else if (guessCount > 0) {
         guesses.textContent = guessCount;
         unlockClue(guessCount);
+        failAudio.play();
         alert('Incorrect! Try again.');
     }
     else {
         alert('Game Over! The correct answer was ' + correctCountry);
+        gameOverAudio.play();
         gameRestart(win);
     }
 });
