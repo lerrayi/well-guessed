@@ -7,14 +7,18 @@ h1, h2, h3, h4 {
   font-family: "Proxima Nova", Arial, sans-serif !important;
 }
 
-p, select, button, option, #article-link {
-  font-size: 1.2em;
+p, select, button, #article-link {
+  font-size: 1.2em !important;
 }
 
 .dynamic-img {
   width: 100%; 
   height: auto;
   border-radius: 8px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .header {
@@ -95,6 +99,26 @@ p, select, button, option, #article-link {
 
 .hidden {
   display: none;
+}
+
+.basic-btn {
+  background-color: #FFE583;
+  border-color: #FECA0B;
+  font-weight: bold;
+}
+
+.basic-btn:hover,
+.basic-btn:focus {
+  background-color: #ffd748;  
+  border-color: #e7bc21;
+}
+
+.big-text {
+  font-size: 3em;
+}
+
+.medium-text {
+  font-size: 2.2em;
 }
 
 #difficulty-selector {
