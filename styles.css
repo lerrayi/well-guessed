@@ -7,37 +7,14 @@ h1, h2, h3, h4 {
   font-family: "Proxima Nova", Arial, sans-serif !important;
 }
 
-p, select, button {
+p, select, button, option, #article-link {
   font-size: 1.2em;
 }
 
-.locked-article img {
+.dynamic-img {
   width: 100%; 
   height: auto;
   border-radius: 8px;
-}
-
-.locked-article {
-  position: relative;
-  display: block;
-}
-
-.overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 1);
-  z-index: 1;
-  border-radius: 8px;
-}
-
-.enabled {
-  pointer-events: auto;
 }
 
 .header {

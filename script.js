@@ -15,6 +15,8 @@ let lastQuestionIndex = -1;
 let difficulty = 'easy';
 let guessCount = 4;
 let maxGuessNum = 4;
+let questionCount = 0;
+let questionCorrect = false;
 
 // Import questions data
 let questions = [];
@@ -48,7 +50,7 @@ difficultyButtons.forEach(button => {
         // Hide main menu and show game
         document.getElementById('main-menu').classList.add('hidden');
         document.getElementById('game').classList.remove('hidden');
-        gameRestart(win);
+        restartQuestion();
     });
 });
 
@@ -98,14 +100,14 @@ function chooseQuestion(questions) {
     document.getElementById('clue2-text').textContent = question.clue2;
     document.getElementById('clue3-text').textContent = question.clue3;
     document.getElementById('article-link').href = question.articleLink;
+    document.getElementById('article-link').textContent = question.article;
     document.getElementById('img-link').src = question.img;
     document.getElementById('img-link').alt = question.alt;
     correctCountry = question.answer;
     console.log('Index chosen:', randomIndex);
 }
 
-function gameRestart(winBoolean) {
-    console.log('gameRestart called with winBoolean:', winBoolean);
+function restartQuestion() {
     setDifficulty(difficulty);
 
     for (let i = 1; i < 4; i++) {
@@ -118,16 +120,15 @@ function gameRestart(winBoolean) {
         disabledLink.classList.remove('disabled-link');
     }
 
-    if (winBoolean == true) {
-        score += 500;
-        document.getElementById('score').textContent = score;
-    }
+    document.getElementById('score').textContent = score;
 
     chooseQuestion(questions);
 
     win = false;
 
-    gameStartAudio.play();
+    if (questionCount == 0) {
+        gameStartAudio.play();
+    }
 }
 
 function addHidden(elementId) {
@@ -154,9 +155,11 @@ document.getElementById('country-select').addEventListener('submit', function(ev
     if (country == correctCountry) {
         confetti();
         winAudio.play();
-        alert('Correct! Game restarting...');
         win = true;
-        gameRestart(win);
+        questionCount++;
+        questionCorrect = true;
+        calculateScore(win);
+        endQuestionScreen(questionCorrect);
     } else if (guessCount > 0) {
         guesses.textContent = guessCount;
         unlockClue(guessCount);
@@ -164,8 +167,82 @@ document.getElementById('country-select').addEventListener('submit', function(ev
         alert('Incorrect! Try again.');
     }
     else {
-        alert('Game Over! The correct answer was ' + correctCountry);
         gameOverAudio.play();
-        gameRestart(win);
+        questionCount++;
+        questionCorrect = false;
+        calculateScore(win);
+        endQuestionScreen(questionCorrect);
     }
 });
+
+function calculateScore(winBoolean) {
+    if (winBoolean == true) {
+        score += 500;
+    }
+}
+
+function checkQuestionCount(questionCount) {
+    console.log('checkQuestionCount called');
+    if (questionCount == 3 ) {
+        console.log('End of game reached');
+        endGameScreen();
+    }
+    else {
+        console.log('Game continues, question count:', questionCount);
+        document.getElementById('game').classList.remove('hidden');
+        restartQuestion();
+    }
+}
+
+function endQuestionScreen(questionCorrect) {
+    console.log('endQuestionScreen called');
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('question-end').classList.remove('hidden');
+    document.getElementById('current-score').textContent = score;
+    if (questionCorrect == false) {
+        document.getElementById('question-end-text').textContent = 'Incorrect! The correct answer was ' + correctCountry;
+    }
+    else {
+        document.getElementById('question-end-text').textContent = 'Correct! Well done!';
+    }
+    
+    document.getElementById('next-question').addEventListener('click', function() {
+        document.getElementById('question-end').classList.add('hidden');
+        checkQuestionCount(questionCount);
+    });
+}
+
+function endGameScreen() {
+    console.log('endGameScreen called');
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('game-over').classList.remove('hidden');
+    document.getElementById('final-score').textContent = score;
+
+    // Determine the title based on the score
+    let title;
+    if (score >= 2000) {
+        title = 'Well Guessed!';
+    } else if (score >= 1000) {
+        title = 'Good Job!';
+    } else {
+        title = 'Keep Trying!';
+    }
+    
+    document.getElementById('score-title').textContent = title;
+
+    document.getElementById('restart-game').addEventListener('click', function() {
+        restartGame();
+    }
+    );
+}
+
+function restartGame() {
+    console.log('restartGame called');
+    score = 0;
+    win = false;
+    lastQuestionIndex = -1;
+    guessCount = maxGuessNum;
+    
+    document.getElementById('game-over').classList.add('hidden');
+    document.getElementById('main-menu').classList.remove('hidden');
+}

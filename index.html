@@ -103,14 +103,13 @@
 
       <!-- Responsive column for submit button and locked article -->
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <a id="article-link" href="/" target="_blank" class="locked-article col-12 mb-3">
-          <img id="img-link" src="img/hidden-story.webp" alt="A white question mark over a yellow background."/>
-        </a>
+        <img src="img/hidden-story.webp" class="dynamic-img" alt="A white question mark over a yellow background."/>
+        <p>Finish the question to unlock this story!</p>
       </div>
       <form class="col-12" id="country-select">
         <div class="row">
-          <select class="col-lg-11 col-md-12 col-sm-12" id="country-guess">
-            <option selected disabled>Select or enter country</option>
+          <select class="col-lg-11 col-md-12 col-sm-12 mb-3" id="country-guess">
+            <option selected disabled>Select a country</option>
             <option>Cambodia</option>
             <option>Mali</option>
             <option>Niger</option>
@@ -119,9 +118,33 @@
             <option>Tanzania</option>
             <option>Uganda</option>
           </select>
-          <button class="col-lg-1 col-md-12 col-sm-12 rounded" type="submit">Submit</button>
+          <button class="col-lg-1 col-md-12 col-sm-12 rounded mb-3" type="submit">Submit</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div id="question-end" class="container hidden">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2 id="question-end-text"></h2>
+        <h3>Score: <span id="current-score"></span></h3>
+        <img id="img-link" class="dynamic-img"></img>
+        <a id="article-link" href="/" target="_blank" class="col-12 mb-3"></a>
+        <button id="next-question" class="rounded p-3 col-12 mb-5">Next Question</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-over" class="container hidden">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2>Game Over</h2>
+        <h3>Your final score is: <span id="final-score"></span></h3>
+        <h3>Your title: <span id="score-title"></span></h3>
+        <p>Keep it up!</p>
+        <button id="restart-game" class="rounded p-3 col-12 mb-5">Restart Game</button>
+      </div>
     </div>
   </div>
 
