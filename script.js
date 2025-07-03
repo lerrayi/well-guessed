@@ -22,6 +22,11 @@ let questionCorrect = false;
 // Import questions data
 let questions = [];
 
+// Disable difficulty buttons initially
+difficultyButtons.forEach(button => {
+    button.disabled = true;
+});
+
 // Fetch and load questions from JSON file
 fetch('./questions.json')
     .then(response => response.json())
@@ -37,13 +42,28 @@ fetch('./questions.json')
             img: item.img,
             alt: item.alt
         }));
+        
+        // Enable difficulty buttons and restore original text after questions load
+        difficultyButtons.forEach(button => {
+            button.disabled = false;
+            button.textContent = button.getAttribute('data-original-text') || button.textContent.replace('Loading...', '').trim();
+        });
     })
     .catch(error => {
         console.error('Error loading questions:', error);
     });
 
 difficultyButtons.forEach(button => {
+    // Store original button text
+    button.setAttribute('data-original-text', button.textContent);
+    
     button.addEventListener('click', function() {
+        // Additional check to ensure questions are loaded
+        if (questions.length === 0) {
+            alert('Questions are still loading. Please wait a moment.');
+            return;
+        }
+        
         // Get the difficulty from the parent li element
         difficulty = this.parentElement.getAttribute('data-difficulty');
         console.log('Selected difficulty:', difficulty);
@@ -115,10 +135,20 @@ function chooseQuestion(questions) {
 function restartQuestion() {
     setDifficulty(difficulty);
 
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i <= 3; i++) {
+        removeHidden('clue' + i);
         addHidden('clue' + i + '-text');
         document.getElementById('clue' + i + '-icon').textContent = '🔒';
     }
+
+    // Then hide clues based on difficulty
+    if (difficulty == 'hard') {
+        addHidden('clue2');
+        addHidden('clue3');
+    } else if (difficulty == 'medium') {
+        addHidden('clue3');
+    }
+    // Easy mode: all clues visible (no additional hiding needed)
 
     const disabledLink = document.getElementsByClassName('disabled-link')[0];
     if (disabledLink) {
@@ -247,6 +277,7 @@ function restartGame() {
     win = false;
     lastQuestionIndex = -1;
     guessCount = maxGuessNum;
+    questionCount = 0;
     
     document.getElementById('game-over').classList.add('hidden');
     document.getElementById('main-menu').classList.remove('hidden');
