@@ -20,5 +20,16 @@
         "articleLink": "https://medium.com/charity-water/i-feel-beautiful-for-the-first-time-4b66fe80a1d9",
         "img":"img/uganda.webp",
         "alt":"An older woman with a black mesh headscarf and a green blouse smiles towards the sun. Her headscarf is adorned with pink flowers. She is standing in a field of crops."
+    },
+    {
+        "question":"In this country, charity: water helped construct a piped water system in the mountains, providing clean water to thousands of people.",
+        "answer":"Nepal",
+        "clue1":"This country is home to Mount Everest, the highest peak in the world.",
+        "clue2":"The Buddha was born in this country.",
+        "clue3":"The capital city of this country is Kathmandu.",
+        "article":"Between Heaven and Earth | Netra's Story",
+        "articleLink": "https://www.charitywater.org/stories/between-heaven-and-earth",
+        "img":"img/nepal.webp",
+        "alt":"A birds' eye view of a mountainous region with terraced fields. A small village can be seen nestled among the mountains. The sky is grey and misty."
     }
 ]
