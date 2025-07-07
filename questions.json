@@ -31,5 +31,16 @@
         "articleLink": "https://www.charitywater.org/stories/between-heaven-and-earth",
         "img":"img/nepal.webp",
         "alt":"A birds' eye view of a mountainous region with terraced fields. A small village can be seen nestled among the mountains. The sky is grey and misty."
+    },
+    {
+        "question":"In the rural tropics of this Asian country, the water is plagued by waterborne diseases.",
+        "answer":"Cambodia",
+        "clue1":"This country is known for the Angkor Wat temple complex.",
+        "clue2":"Most of this country's population is ethnically Khmer.",
+        "clue3":"The capital city of this country is Phnom Penh.",
+        "article":"Healthy crops beneath her feet. A college education on the horizon. | Khloeum's Story",
+        "articleLink":"https://www.charitywater.org/stories/khloeums-story",
+        "img":"img/cambodia.webp",
+        "alt":"A tan, middle-aged woman wearing a knitted sun hat waters her crops in a field full of vines."
     }
 ]
