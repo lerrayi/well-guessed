@@ -42,5 +42,16 @@
         "articleLink":"https://www.charitywater.org/stories/khloeums-story",
         "img":"img/cambodia.webp",
         "alt":"A tan, middle-aged woman wearing a knitted sun hat waters her crops in a field full of vines."
+    },
+    {
+        "question":"During the rainy season, charity: water struggles to reach remote communities in this West African country.",
+        "answer":"Senegal",
+        "clue1":"This country's primary language is French.",
+        "clue2":"This country is home to the music genre Mbalax.",
+        "clue3":"A nation of fishermen, this country's name translates to 'Our Boat'.",
+        "article":"Something Magnificent | Charlotte's Story",
+        "articleLink":"https://www.charitywater.org/stories/something-magnificent",
+        "img":"img/senegal.webp",
+        "alt":"A darkskinned young woman with golden hoop earrings and dyed twists smiles in a 3/4 pose. She's standing in front of a teal garage door."
     }
 ]
