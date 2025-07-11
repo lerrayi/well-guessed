@@ -9,6 +9,9 @@ const winAudio = document.getElementById('win-audio');
 const failAudio = document.getElementById('fail-audio');
 
 let score = 0;
+let scoreMult = 1;
+let scoreBase = 500;
+
 let win = false;
 let question = {};
 let correctCountry = '';
@@ -93,12 +96,15 @@ function setDifficulty(difficulty) {
     if (difficulty == 'easy') {
         guessCount = 4;
         maxGuessNum = 4;
+        scoreMult = 1;
     } else if (difficulty == 'medium') {
         guessCount = 3;
         maxGuessNum = 3;
+        scoreMult = 1.5;
     } else if (difficulty == 'hard') {
         guessCount = 2;
         maxGuessNum = 2;
+        scoreMult = 2;
     }
 
     maxGuesses.textContent = maxGuessNum;
@@ -168,6 +174,7 @@ function restartQuestion() {
     }
 
     document.getElementById('score').textContent = score;
+    scoreBase = 500;
 
     chooseQuestion(questions);
 
@@ -210,6 +217,7 @@ document.getElementById('country-select').addEventListener('submit', function(ev
     } else if (guessCount > 0) {
         guesses.textContent = guessCount;
         unlockClue(guessCount);
+        scoreBase -= 100;
         failAudio.play();
         alert('Incorrect! Try again.');
     }
@@ -224,7 +232,7 @@ document.getElementById('country-select').addEventListener('submit', function(ev
 
 function calculateScore(winBoolean) {
     if (winBoolean == true) {
-        score += 500;
+        score += (scoreBase * scoreMult);
     }
 }
 
@@ -261,16 +269,41 @@ function endGameScreen() {
     document.getElementById('final-score').textContent = score;
 
     // Determine the title based on the score
-    let title;
-    if (score >= 2000) {
-        title = 'Well Guessed!';
-    } else if (score >= 1000) {
-        title = 'Good Job!';
-    } else {
-        title = 'Keep Trying!';
-    }
+    let title = chooseTitle(score);
+    let titleDesc = chooseTitleDesc(score);
     
     document.getElementById('score-title').textContent = title;
+    document.getElementById('score-description').textContent = titleDesc;
+}
+
+function chooseTitle(score) {
+    if (score >= 3000) {
+        title = 'Wise Wellmaster';
+    } else if (score >= 2000) {
+        title = 'Spring Seeker';
+    } else if (score >= 1000) {
+        title = 'Thirsty for Knowledge';
+    } else if (score >= 500) {
+        title = 'Drip Discoverer';
+    } else {
+        title = 'Well Intentioned';
+    }
+    return title;
+}
+
+function chooseTitleDesc(score) {
+    if (score >= 3000) {
+        titleDesc = 'You\'ve mapped the world and mastered the mission. Your knowledge flows deep, and your insight sparks real change.';
+    } else if (score >= 2000) {
+        titleDesc = 'You\'re closing in on the source. Your answers show purpose, and your awareness is making ripples.';
+    } else if (score >= 1000) {
+        titleDesc = 'Your curiosity is flowing strong. Every question brings you closer to understanding the global water crisis.';
+    } else if (score >= 500) {
+        titleDesc = 'You\'re just beginning to connect the dots. The facts may trickle in slowly, but you\'re heading in the right direction.';
+    } else {
+        titleDesc = 'Every journey starts with a single drop. You may be guessing now, but your heart\'s in the right place.';
+    }
+    return titleDesc;
 }
 
 function restartGame() {
