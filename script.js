@@ -173,6 +173,9 @@ function restartQuestion() {
         disabledLink.classList.remove('disabled-link');
     }
 
+    // Reset country select to default option
+    document.getElementById('country-guess').value = document.getElementById('country-select-default').value;
+
     document.getElementById('score').textContent = score;
     scoreBase = 500;
 
