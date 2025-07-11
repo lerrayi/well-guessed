@@ -19,6 +19,8 @@ let maxGuessNum = 4;
 let questionCount = 0;
 let questionCorrect = false;
 
+let gameEnabled = false;
+
 // Import questions data
 let questions = [];
 
@@ -27,13 +29,20 @@ difficultyButtons.forEach(button => {
     button.disabled = true;
 });
 
-// Fetch and load questions from JSON file
-fetch('./questions.json')
-    .then(response => response.json())
-    .then(data => {
+async function loadQuestion() {
+    const response = await fetch('./questions.json');
+    if (!response.ok) {
+        throw new Error('Failed to load questions');
+    }
+    return await response.json();
+}
+
+async function transformQuestions() {
+    const data = await loadQuestion();
+    try {
         questions = data.map(item => ({
             question: item.question,
-            answer: item.answer,
+                answer: item.answer,
             clue1: item.clue1,
             clue2: item.clue2,
             clue3: item.clue3,
@@ -42,38 +51,41 @@ fetch('./questions.json')
             img: item.img,
             alt: item.alt
         }));
-        
-        // Enable difficulty buttons and restore original text after questions load
-        difficultyButtons.forEach(button => {
-            button.disabled = false;
-            button.textContent = button.getAttribute('data-original-text') || button.textContent.replace('Loading...', '').trim();
-        });
-    })
-    .catch(error => {
-        console.error('Error loading questions:', error);
-    });
+        console.log('Questions loaded successfully:', questions);
+    } catch (error) {
+        console.error('Error loading or transforming questions:', error);
+    }
+}
 
-difficultyButtons.forEach(button => {
-    // Store original button text
-    button.setAttribute('data-original-text', button.textContent);
-    
-    button.addEventListener('click', function() {
-        // Additional check to ensure questions are loaded
-        if (questions.length === 0) {
-            alert('Questions are still loading. Please wait a moment.');
-            return;
-        }
-        
-        // Get the difficulty from the parent li element
-        difficulty = this.parentElement.getAttribute('data-difficulty');
-        console.log('Selected difficulty:', difficulty);
-        
-        // Hide main menu and show game
-        document.getElementById('main-menu').classList.add('hidden');
-        document.getElementById('game').classList.remove('hidden');
-        restartQuestion();
-    });
+// Do not start the game until questions are loaded
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await transformQuestions();
+        enableGame();
+    } catch (error) {
+        console.error('Error during initialization:', error);
+        alert('Failed to load questions. Please try again later.');
+    }
 });
+
+function enableGame() {
+    if (gameEnabled) return;
+    console.log('Enabling game, difficulty buttons are now clickable');
+    difficultyButtons.forEach(button => {
+        button.disabled = false;
+        button.addEventListener('click', function() {
+            // Get the difficulty from the parent li element
+            difficulty = this.parentElement.getAttribute('data-difficulty');
+            console.log('Selected difficulty:', difficulty);
+
+            // Hide main menu and show game
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('game').classList.remove('hidden');
+            gameEnabled = true;
+            restartQuestion();
+        });
+    });
+}
 
 function setDifficulty(difficulty) {
     console.log('Setting difficulty:', difficulty);
@@ -240,11 +252,6 @@ function endQuestionScreen(questionCorrect) {
     else {
         document.getElementById('question-end-text').textContent = 'Correct! Well done!';
     }
-    
-    document.getElementById('next-question').addEventListener('click', function() {
-        document.getElementById('question-end').classList.add('hidden');
-        checkQuestionCount(questionCount);
-    });
 }
 
 function endGameScreen() {
@@ -264,11 +271,6 @@ function endGameScreen() {
     }
     
     document.getElementById('score-title').textContent = title;
-
-    document.getElementById('restart-game').addEventListener('click', function() {
-        restartGame();
-    }
-    );
 }
 
 function restartGame() {
@@ -282,3 +284,14 @@ function restartGame() {
     document.getElementById('game-over').classList.add('hidden');
     document.getElementById('main-menu').classList.remove('hidden');
 }
+
+document.getElementById('next-question').addEventListener('click', function() {
+    document.getElementById('question-end').classList.add('hidden');
+    checkQuestionCount(questionCount);
+});
+
+
+document.getElementById('restart-game').addEventListener('click', function() {
+    restartGame();
+}
+);
